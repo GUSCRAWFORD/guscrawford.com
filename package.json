@@ -1,0 +1,24 @@
+{
+  "name": "guscrawford.com",
+  "version": "0.0.0",
+  "description": "Gus Crawford's professional website",
+  "main": "index.js",
+  "author": "Gus Crawford <gus.crawford@envisageny.com>",
+  "license": "MIT",
+  "private": false,
+
+  "scripts": {
+    "auto-build-api":"cd api && tsc --watch",
+    "api":"cd api && yarn start",
+    "ui":"cd ui && yarn start",
+    "local scripts":"echo local scripts",
+    "local:auto-build-api":"pm2 start npm --name \"api auto-build\" -- run auto-build-api",
+    "local:api":"pm2 start npm --name \"api\" -- run api",
+    "local:ui":"pm2 start npm --name \"ui\" -- run ui",
+    "local:mongo":"pm2 start npm --name \"mongod\" -- run mongod:no-auth",
+    "local":"pm2 kill && yarn local:mongo && yarn local:auto-build-api && yarn local:api && yarn local:ui",
+    "mongo scripts":"echo mongo scripts",
+    "mongod":"cd data && mongod -f mongod.conf",
+    "mongod:no-auth":"cd data && mongod -f no-auth-mongod.conf"
+  }
+}
